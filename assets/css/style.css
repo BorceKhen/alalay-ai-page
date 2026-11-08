@@ -349,175 +349,130 @@ a:hover {
 }
 
 /* ==========================================================================
-   1. HERO SECTION
+   1. HERO SECTION (SafeScape Reference Placement)
    ========================================================================== */
 .hero {
-  padding: 5.5rem 0 4.5rem;
-  background: radial-gradient(circle at 50% 10%, rgba(59, 73, 161, 0.08) 0%, transparent 60%),
-              radial-gradient(circle at 90% 80%, rgba(2, 132, 199, 0.06) 0%, transparent 50%),
-              var(--bg-page);
+  background: linear-gradient(180deg, #f8faff 0%, #ffffff 100%);
+  color: var(--text-main);
+  padding: clamp(3.5rem, 6vw, 5.5rem) 0 clamp(3.5rem, 6vw, 5rem);
+  position: relative;
+  overflow: hidden;
   border-bottom: 1px solid var(--border-subtle);
 }
 
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -15%;
+  right: -5%;
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle, rgba(59, 73, 161, 0.12) 0%, rgba(2, 132, 199, 0.05) 50%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero .wrap {
+  position: relative;
+  z-index: 1;
+}
+
 .hero-copy {
-  text-align: center;
-  max-width: 880px;
-  margin: 0 auto;
+  max-width: 82ch;
+  text-align: left;
 }
 
 .hero-kicker {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.88rem;
-  font-weight: 600;
   color: var(--primary);
-  background: var(--primary-soft);
-  border: 1px solid var(--primary-border);
-  padding: 0.4rem 1rem;
-  border-radius: var(--radius-pill);
-  margin-bottom: 1.75rem;
-}
-
-.hero h1 {
-  font-size: 3.25rem;
-  font-weight: 800;
-  color: var(--navy);
-  letter-spacing: -0.03em;
-  line-height: 1.15;
-  margin-bottom: 1.25rem;
-}
-
-.hero-title-box {
-  background: var(--bg-white);
-  border: 1px dashed var(--primary-border);
-  border-radius: var(--radius-md);
-  padding: 1.25rem 1.75rem;
-  margin-bottom: 1.5rem;
-  box-shadow: var(--shadow-sm);
-}
-
-.hero-research-title {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--primary);
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 1.15rem;
+  max-width: 58ch;
   line-height: 1.45;
 }
 
+.hero h1 {
+  font-family: var(--font-sans);
+  font-size: clamp(3.2rem, 7.5vw, 5.2rem);
+  font-weight: 900;
+  letter-spacing: -0.035em;
+  line-height: 1;
+  color: #0f172a;
+  margin-bottom: 1.25rem;
+}
+
+.hero-title {
+  font-family: var(--font-sans);
+  font-size: clamp(1.2rem, 2vw, 1.45rem);
+  font-weight: 600;
+  line-height: 1.45;
+  color: #334155;
+  max-width: 68ch;
+  margin-bottom: 1.25rem;
+}
+
 .hero-desc {
-  font-size: 1.12rem;
+  font-size: 1.05rem;
   color: var(--text-muted);
   line-height: 1.7;
-  margin-bottom: 2.25rem;
-  max-width: 780px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-bottom: 2rem;
+  max-width: 78ch;
 }
 
 .hero-actions {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 1rem;
   flex-wrap: wrap;
-  margin-bottom: 2.5rem;
-}
-
-.hero-meta-bar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-  padding-top: 1.75rem;
-  border-top: 1px solid var(--border-subtle);
-  font-size: 0.88rem;
-  color: var(--text-muted);
-  flex-wrap: wrap;
-}
-
-.hero-meta-item {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
 }
 
 /* ==========================================================================
-   2. TEAM & ADVISER SECTION
+   2. TEAM & ADVISER SECTION (Minimal Clean Academic Top-Border Style)
    ========================================================================== */
 .team-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.5rem;
-  margin-bottom: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2.5rem;
+  margin-top: 1.5rem;
 }
 
 .person-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  padding: 1.75rem 1.5rem;
-  text-align: center;
-  box-shadow: var(--shadow-sm);
-  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  border: none;
+  border-top: 3.5px solid var(--primary);
+  border-radius: 0;
+  padding: 1.25rem 0 0;
+  box-shadow: none;
+  text-align: left;
+  transition: all 0.2s ease;
 }
 
 .person-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
-  border-color: var(--primary-border);
+  transform: translateY(-2px);
+  box-shadow: none;
 }
 
-.person-avatar {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  background: var(--primary-soft);
-  color: var(--primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.75rem;
-  font-weight: 700;
-  margin: 0 auto 1rem;
-  border: 2px solid var(--primary-border);
+.person-card.adviser-card {
+  border-top-color: #f59e0b;
 }
 
 .person-card h3 {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: var(--navy);
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.35rem;
+  letter-spacing: -0.01em;
 }
 
 .person-role {
-  font-size: 0.88rem;
-  color: var(--primary);
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.person-dept {
-  font-size: 0.8rem;
+  font-size: 0.95rem;
   color: var(--text-muted);
+  line-height: 1.5;
+  font-weight: 400;
 }
-
-.adviser-card {
-  background: linear-gradient(180deg, #ffffff 0%, #f8faff 100%);
-  border: 1.5px solid var(--primary-border);
-}
-
-.adviser-card .person-avatar {
-  background: var(--primary);
-  color: #ffffff;
-  border-color: var(--primary-hover);
-}
-
-.academic-note {
-  text-align: center;
-  font-size: 0.88rem;
-  color: var(--text-muted);
-  max-width: 820px;
-  margin: 2rem auto 0;
   padding: 1rem 1.5rem;
   background: rgba(255, 255, 255, 0.6);
   border-radius: var(--radius-sm);
