@@ -14,10 +14,11 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/img/icon.png">
 
-  <!-- Google Fonts: Plus Jakarta Sans -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/open-dyslexic@1.0.3/open-dyslexic.css">
 
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="assets/css/style.css">
@@ -42,7 +43,6 @@
     <div class="wrap header-row">
       <a class="brand" href="#top" aria-label="ALALAY-AI Homepage">
         <img src="assets/img/logo.png" alt="ALALAY-AI Logo" class="brand-logo-img">
-        <span>ALALAY<span style="color: var(--primary);">-AI</span></span>
       </a>
 
       <nav class="nav" aria-label="Main Navigation">
@@ -69,20 +69,117 @@
     <!-- =========================================================
          1. RESEARCH TITLE & HERO SECTION (SafeScape Reference Placement)
          ========================================================= -->
+    <!-- =========================================================
+         1. RESEARCH TITLE & HERO SECTION (Concept A Split Interactive Showcase)
+         ========================================================= -->
     <section class="hero" id="about">
-      <div class="wrap">
+      <div class="wrap hero-grid">
+        <!-- Left Column: Copy & Actions -->
         <div class="hero-copy">
           <p class="hero-kicker">Undergraduate thesis, BS Computer Science (Intelligent Systems), Laguna State Polytechnic University</p>
-          <h1>ALALAY-AI</h1>
+          <h1 class="hero-headline">ALALAY<span class="gradient-text">-AI</span></h1>
           <p class="hero-title">
             ALALAY-AI: A Machine Learning-Adaptive Reading Platform for Individuals with Learning and Visual Disabilities
           </p>
           <p class="hero-desc">
-            ALALAY-AI is a web-based adaptive reading platform engineered to provide accessible, personalized reading assistance for individuals with dyslexia, total blindness, low vision, and color blindness. Utilizing the Unified Hybrid Text Extraction Model (UHTEM) with 98.43% character recognition accuracy, the platform converts PDF, DOCX, and PPTX materials into simplified study sets, flashcards, and quizzes. Powered by Deep Q-Network (DQN) reinforcement learning for sequential behavioral adaptation and tiered generative AI content synthesis, ALALAY-AI dynamically tailors reading difficulty, line rulers, text-to-speech audio, and visual presentation to individual accessibility profiles.
+            A cross-platform adaptive reading ecosystem designed for individuals with dyslexia, complete blindness, low vision, and color blindness. Features UHTEM document processing, Deep Q-Network (DQN) sequential adaptation, and tiered generative AI content transformation.
           </p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="https://alalay-aiv3.duckdns.org/auth" target="_blank" rel="noopener">Visit ALALAY-AI</a>
             <a class="btn btn-ghost" href="https://github.com/BorceKhen/ALALAY-AI" target="_blank" rel="noopener">View Repository</a>
+          </div>
+
+          <!-- Academic Highlights Strip -->
+          <div class="hero-stats-strip">
+            <div class="stat-pill">
+              <span class="stat-val">98.43%</span>
+              <span class="stat-lbl">OCR Accuracy</span>
+            </div>
+            <div class="stat-pill">
+              <span class="stat-val">0.45s</span>
+              <span class="stat-lbl">Groq Latency</span>
+            </div>
+            <div class="stat-pill">
+              <span class="stat-val">4.58<span style="font-size:0.7em;">/5</span></span>
+              <span class="stat-lbl">UAT Score</span>
+            </div>
+            <div class="stat-pill">
+              <span class="stat-val">DQN</span>
+              <span class="stat-lbl">Adaptive Engine</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Interactive Assistive Terminal -->
+        <div class="hero-terminal-wrap">
+          <div class="hero-terminal" id="assistiveTerminal">
+            <!-- Terminal Header -->
+            <div class="terminal-bar">
+              <div class="terminal-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <div class="terminal-status">
+                <span class="status-pulse"></span>
+                <span>DQN Engine · Adaptive Mode</span>
+              </div>
+            </div>
+
+            <!-- Terminal Interactive Switcher -->
+            <div class="terminal-controls" role="tablist" aria-label="Assistive preview modes">
+              <button class="terminal-btn active" data-mode="default" role="tab" aria-selected="true">
+                Standard
+              </button>
+              <button class="terminal-btn" data-mode="dyslexia" role="tab" aria-selected="false">
+                Dyslexia
+              </button>
+              <button class="terminal-btn" data-mode="contrast" role="tab" aria-selected="false">
+                Low Vision
+              </button>
+              <button class="terminal-btn" data-mode="simplified" role="tab" aria-selected="false">
+                AI Simplified
+              </button>
+              <button class="terminal-btn" data-mode="tts" role="tab" aria-selected="false">
+                Audio TTS
+              </button>
+            </div>
+
+            <!-- Terminal Content Box -->
+            <div class="terminal-content">
+              <div class="terminal-card-header">
+                <span class="deck-category-badge" id="terminalBadge">Active Study Deck: General Biology</span>
+                <span class="reading-time" id="terminalMeta">Estimated reading: 45s</span>
+              </div>
+
+              <!-- Animated Reader Box -->
+              <div class="terminal-reader" id="terminalReader">
+                <div class="reading-ruler" id="readingRuler"></div>
+                <h4 id="terminalHeading">Cellular Respiration and Photosynthesis</h4>
+                <p id="terminalText">
+                  Photosynthesis is a photochemical process in chloroplastic thylakoid membranes wherein absorbed photon irradiance facilitates carbon assimilation and water photolysis to synthesize energetic glucose metabolites.
+                </p>
+                <div class="audio-equalizer" id="audioEqualizer" aria-hidden="true">
+                  <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                </div>
+              </div>
+
+              <!-- Real-Time Telemetry Bar -->
+              <div class="terminal-telemetry">
+                <div class="telemetry-item">
+                  <span class="telemetry-label">Cognitive Strain</span>
+                  <span class="telemetry-val" id="telemetryFriction">Optimal (CLI: 7%)</span>
+                </div>
+                <div class="telemetry-item">
+                  <span class="telemetry-label">Active Adaptation</span>
+                  <span class="telemetry-val" id="telemetryPolicy">Sequential DQN</span>
+                </div>
+                <div class="telemetry-item">
+                  <span class="telemetry-label">Accessibility</span>
+                  <span class="telemetry-val" style="color: #10b981;">WCAG 2.1 AA</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -191,42 +288,134 @@
           </p>
         </div>
 
+        <!-- Research Framework Badges -->
+        <div class="methodology-framework-bar">
+          <div class="framework-pill">
+            <span class="pill-indicator" style="background: #0284c7;"></span>
+            <span>Design Science Research (DSRM)</span>
+          </div>
+          <div class="framework-pill">
+            <span class="pill-indicator" style="background: #6366f1;"></span>
+            <span>Agile Iterative Sprints</span>
+          </div>
+          <div class="framework-pill">
+            <span class="pill-indicator" style="background: #059669;"></span>
+            <span>Multi-Deficit Cognitive Modeling</span>
+          </div>
+          <div class="framework-pill">
+            <span class="pill-indicator" style="background: #d97706;"></span>
+            <span>Closed-Loop Telemetry Analytics</span>
+          </div>
+        </div>
+
         <!-- Development Phases Grid -->
         <div class="methodology-phases">
-          <div class="phase-card">
-            <div class="phase-number">01</div>
+          <!-- Phase 01 -->
+          <div class="phase-card" style="--card-accent: #0284c7;">
+            <div class="phase-header">
+              <span class="phase-num-badge">
+                <span class="step-circle">01</span> Phase 01
+              </span>
+              <span class="phase-category">Analysis</span>
+            </div>
             <h3>Requirements Analysis</h3>
-            <p>Analyzed accessibility requirements (WCAG 2.1 AA), multi-deficit profiling guidelines, and document parsing benchmarks for neurodivergent and visually impaired learners.</p>
+            <p>
+              Analyzed accessibility guidelines (WCAG 2.1 AA), multi-deficit profiling criteria, and document parsing benchmarks for individuals with dyslexia, complete blindness, low vision, and color blindness.
+            </p>
+            <div class="phase-deliverable">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Output: WCAG Matrix &amp; User Need Profiles</span>
+            </div>
           </div>
 
-          <div class="phase-card">
-            <div class="phase-number">02</div>
-            <h3>Architecture &amp; System Design</h3>
-            <p>Architected the six-layer closed-loop system design, Firestore relational data schemas, and responsive accessibility layouts across desktop and mobile devices.</p>
+          <!-- Phase 02 -->
+          <div class="phase-card" style="--card-accent: #2563eb;">
+            <div class="phase-header">
+              <span class="phase-num-badge">
+                <span class="step-circle">02</span> Phase 02
+              </span>
+              <span class="phase-category">Architecture</span>
+            </div>
+            <h3>System &amp; Data Architecture</h3>
+            <p>
+              Architected the six-layer closed-loop system design, Firestore relational schema definitions, and responsive, high-contrast layouts across cross-platform web environments.
+            </p>
+            <div class="phase-deliverable">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Output: Six-Layer System Blueprint</span>
+            </div>
           </div>
 
-          <div class="phase-card">
-            <div class="phase-number">03</div>
+          <!-- Phase 03 -->
+          <div class="phase-card" style="--card-accent: #4f46e5;">
+            <div class="phase-header">
+              <span class="phase-num-badge">
+                <span class="step-circle">03</span> Phase 03
+              </span>
+              <span class="phase-category">Development</span>
+            </div>
             <h3>Full-Stack Prototyping</h3>
-            <p>Engineered the Flask web application, client-side telemetry trackers, interactive flashcard workspaces, and configurable assistive control widgets.</p>
+            <p>
+              Engineered the core Flask application, client-side HCI interaction telemetry trackers, interactive study card workspaces, and configurable assistive reading widgets.
+            </p>
+            <div class="phase-deliverable">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Output: Web Portal &amp; Telemetry Logger</span>
+            </div>
           </div>
 
-          <div class="phase-card">
-            <div class="phase-number">04</div>
+          <!-- Phase 04 -->
+          <div class="phase-card" style="--card-accent: #7c3aed;">
+            <div class="phase-header">
+              <span class="phase-num-badge">
+                <span class="step-circle">04</span> Phase 04
+              </span>
+              <span class="phase-category">AI &amp; RL</span>
+            </div>
             <h3>AI &amp; Reinforcement Learning</h3>
-            <p>Integrated the UHTEM OCR pipeline, fine-tuned tiered LLM content simplifiers, and trained the Deep Q-Network (DQN) agent on HCI interaction telemetry for adaptive recommendation.</p>
+            <p>
+              Implemented UHTEM (PaddleOCR + LayoutLMv3), fine-tuned tiered LLM text simplifiers (Groq/Gemini/T5), and trained the Deep Q-Network (DQN) agent for sequential adaptive recommendations.
+            </p>
+            <div class="phase-deliverable">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Output: UHTEM Pipeline &amp; DQN Model</span>
+            </div>
           </div>
 
-          <div class="phase-card">
-            <div class="phase-number">05</div>
+          <!-- Phase 05 -->
+          <div class="phase-card" style="--card-accent: #059669;">
+            <div class="phase-header">
+              <span class="phase-num-badge">
+                <span class="step-circle">05</span> Phase 05
+              </span>
+              <span class="phase-category">Auditing</span>
+            </div>
             <h3>Testing &amp; Verification</h3>
-            <p>Executed diagnostic test cases, route verification, W3C accessibility validation (0 errors/warnings), and multi-screen reader compatibility audits (NVDA, JAWS, VoiceOver, TalkBack).</p>
+            <p>
+              Executed unit test suites, route security checks, W3C accessibility compliance verification (0 errors/0 warnings), and external screen reader compatibility audits (NVDA, JAWS, VoiceOver, TalkBack).
+            </p>
+            <div class="phase-deliverable">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Output: W3C &amp; Screen Reader Audit Log</span>
+            </div>
           </div>
 
-          <div class="phase-card">
-            <div class="phase-number">06</div>
+          <!-- Phase 06 -->
+          <div class="phase-card" style="--card-accent: #d97706;">
+            <div class="phase-header">
+              <span class="phase-num-badge">
+                <span class="step-circle">06</span> Phase 06
+              </span>
+              <span class="phase-category">Validation</span>
+            </div>
             <h3>Stakeholder Evaluation</h3>
-            <p>Conducted controlled experimental pre/post assessment with 50 participants, UAT with 25 participants, and software quality benchmarking with 10 IT professionals under ISO/IEC 25010.</p>
+            <p>
+              Conducted controlled pre/post assessment across 50 participants, User Acceptance Testing (UAT) with 25 participants, and software quality benchmarking under ISO/IEC 25010 with 10 IT experts.
+            </p>
+            <div class="phase-deliverable">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Output: ISO/IEC 25010 &amp; UAT Report</span>
+            </div>
           </div>
         </div>
 
@@ -236,10 +425,10 @@
             <span class="mockup-dot red"></span>
             <span class="mockup-dot yellow"></span>
             <span class="mockup-dot green"></span>
-            <span class="mockup-title">alalay-ai-system-architecture.svg</span>
+            <span class="mockup-title">alalay-ai-system-architecture.png</span>
           </div>
           <div class="mockup-preview-wrap" data-lightbox>
-            <img src="assets/img/screenshots/architecture.svg" alt="ALALAY-AI Six-Layer System Architecture Diagram">
+            <img src="assets/img/screenshots/architecture.png" alt="ALALAY-AI Six-Layer System Architecture Diagram">
             <div class="zoom-overlay">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
               Click to preview
@@ -253,27 +442,31 @@
         <!-- Evaluation Breakdown -->
         <div class="eval-grid">
           <div class="eval-card">
+            <span class="eval-stat-number">97.93%</span>
             <span class="eval-tag">ISO/IEC 25010 Benchmark</span>
-            <h4>10 IT Experts (97.93%)</h4>
-            <p>Evaluated software product quality across Functional Suitability, Performance Efficiency, Reliability, Usability, Security, Maintainability, and Portability.</p>
+            <h4>Technical Quality</h4>
+            <p>Validated by 10 IT professionals across 8 software quality characteristics with zero critical defects.</p>
           </div>
 
           <div class="eval-card">
-            <span class="eval-tag">Controlled Learning Gains</span>
-            <h4>50 Participants</h4>
-            <p>Demonstrated significant pre- to post-assessment score improvements in both control and experimental cohorts (6.76 vs 7.04 mean score gain).</p>
-          </div>
-
-          <div class="eval-card">
+            <span class="eval-stat-number">4.58<span class="eval-stat-sub">/5.0</span></span>
             <span class="eval-tag">User Acceptance Testing</span>
-            <h4>25 Participants (4.58 / 5.0)</h4>
-            <p>Achieved an overall mean score of 4.58 (<em>Strongly Agree</em>), with highest ratings in ease of interaction, accessibility controls, and adaptive support.</p>
+            <h4>Overall UAT Score</h4>
+            <p>Rated <em>Strongly Agree</em> across 25 participants for usability, accessibility controls, and interface clarity.</p>
           </div>
 
           <div class="eval-card">
-            <span class="eval-tag">Model Benchmarks</span>
-            <h4>DQN + UHTEM State-of-the-Art</h4>
-            <p>DQN achieved a cumulative reward of 4,860.00 with 75.67% optimal policy match; UHTEM achieved 98.43% character recognition accuracy.</p>
+            <span class="eval-stat-number">+7.04</span>
+            <span class="eval-tag">Comprehension Study</span>
+            <h4>Learning Score Gain</h4>
+            <p>Pre- to post-assessment score improvement across 50 participants comparing baseline vs adaptive sessions.</p>
+          </div>
+
+          <div class="eval-card">
+            <span class="eval-stat-number">98.43%</span>
+            <span class="eval-tag">AI Pipeline Performance</span>
+            <h4>OCR Character Accuracy</h4>
+            <p>Achieved 90.09% word accuracy (9.91% WER) alongside 75.67% DQN optimal adaptation policy match.</p>
           </div>
         </div>
       </div>
@@ -322,10 +515,10 @@
                 <span class="mockup-dot red"></span>
                 <span class="mockup-dot yellow"></span>
                 <span class="mockup-dot green"></span>
-                <span class="mockup-title">alalay-ai/dashboard-decks.png</span>
+                <span class="mockup-title">alalay-ai/dashboard-decks.jpg</span>
               </div>
               <div class="mockup-preview-wrap">
-                <img src="assets/img/screenshots/feature-1.svg" alt="Accessible Study Workspace and Flashcard Decks">
+                <img src="assets/img/screenshots/feature-1.jpg" alt="Accessible Study Workspace and Flashcard Decks">
                 <div class="zoom-overlay">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
                   Enlarge
@@ -368,17 +561,17 @@
                 <span class="mockup-dot red"></span>
                 <span class="mockup-dot yellow"></span>
                 <span class="mockup-dot green"></span>
-                <span class="mockup-title">alalay-ai/document-import-ocr.png</span>
+                <span class="mockup-title">alalay-ai/document-import-ocr.jpg</span>
               </div>
               <div class="mockup-preview-wrap">
-                <img src="assets/img/screenshots/feature-2.svg" alt="UHTEM Document Processing and OCR Pipeline">
+                <img src="assets/img/screenshots/feature-2.jpg" alt="UHTEM Document Processing and OCR Pipeline">
                 <div class="zoom-overlay">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
                   Enlarge
                 </div>
               </div>
               <div class="media-caption">
-                <span>Figure 2.2: UHTEM Document Parsing and Automatic Card Extraction</span>
+                <span>Figure 2.2: UHTEM Document Ingestion and Automated Deck Structure Selection</span>
                 <span style="font-size: 0.72rem; color: var(--primary);">Click to zoom</span>
               </div>
             </div>
@@ -405,7 +598,7 @@
                 </li>
                 <li>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span><strong>User Agency Controller:</strong> Non-intrusive floating recommendation snackbar with one-click accept or session dismissal</span>
+                  <span><strong>Behavioral Fatigue Analytics:</strong> Real-time tracking of Cognitive Load Index (CLI), Navigation Patterns, and Difficulty Index</span>
                 </li>
               </ul>
             </div>
@@ -414,17 +607,17 @@
                 <span class="mockup-dot red"></span>
                 <span class="mockup-dot yellow"></span>
                 <span class="mockup-dot green"></span>
-                <span class="mockup-title">alalay-ai/ai-recommendation-modal.png</span>
+                <span class="mockup-title">alalay-ai/behavioral-analytics-profile.jpg</span>
               </div>
               <div class="mockup-preview-wrap">
-                <img src="assets/img/screenshots/feature-3.svg" alt="DQN Recommendation Engine and Dyslexia Subtype Badges">
+                <img src="assets/img/screenshots/feature-3.jpg" alt="DQN Recommendation Engine and Dyslexia Subtype Badges">
                 <div class="zoom-overlay">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
                   Enlarge
                 </div>
               </div>
               <div class="media-caption">
-                <span>Figure 2.3: DQN Adaptive Recommendation Snackbar with Dyslexia Deficit Badges</span>
+                <span>Figure 2.3: User Profile with Behavioral Fatigue Analytics and AI Adaptations</span>
                 <span style="font-size: 0.72rem; color: var(--primary);">Click to zoom</span>
               </div>
             </div>
@@ -460,17 +653,17 @@
                 <span class="mockup-dot red"></span>
                 <span class="mockup-dot yellow"></span>
                 <span class="mockup-dot green"></span>
-                <span class="mockup-title">alalay-ai/accessibility-controls.png</span>
+                <span class="mockup-title">alalay-ai/accessibility-settings.jpg</span>
               </div>
               <div class="mockup-preview-wrap">
-                <img src="assets/img/screenshots/feature-4.svg" alt="Accessibility Suite and Assistive Reading Controls">
+                <img src="assets/img/screenshots/feature-4.jpg" alt="Accessibility Suite and Assistive Reading Controls">
                 <div class="zoom-overlay">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
                   Enlarge
                 </div>
               </div>
               <div class="media-caption">
-                <span>Figure 2.4: Multimodal Assistive Reading Controls and Daltonization CVD Filters</span>
+                <span>Figure 2.4: Accessibility Settings with Daltonization CVD Filters and Text Modifications</span>
                 <span style="font-size: 0.72rem; color: var(--primary);">Click to zoom</span>
               </div>
             </div>
@@ -521,7 +714,7 @@
           </a>
 
           <!-- Link 3: Video Demonstration -->
-          <a class="link-card" href="https://drive.google.com" target="_blank" rel="noopener">
+          <a class="link-card" href="https://drive.google.com/drive/folders/1oOgIJl86cHzNQw6AdeJgf7ISDEwxWY54?usp=sharing" target="_blank" rel="noopener">
             <div class="link-icon-box">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
             </div>
@@ -529,13 +722,13 @@
             <h3>Video Walkthrough</h3>
             <p>Watch the recorded system demonstration, UHTEM OCR document ingestion, and DQN adaptive recommendation walkthrough on Google Drive.</p>
             <div class="link-action">
-              <span>Watch on Google Drive / YouTube</span>
+              <span>Watch on Google Drive</span>
               <span>&rarr;</span>
             </div>
           </a>
 
           <!-- Link 4: Research Manuscript / Documentation -->
-          <a class="link-card" href="#top">
+          <a class="link-card" href="https://docs.google.com/document/d/1D_3yQLA8bm3mszzgDFQeKgZPpNJmz3-x/edit?usp=sharing&ouid=106493740507532788156&rtpof=true&sd=true" target="_blank" rel="noopener">
             <div class="link-icon-box">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
             </div>
@@ -564,7 +757,7 @@
             <h3 style="margin: 0; color: #ffffff;">ALALAY-AI</h3>
           </div>
           <p>
-            An AI-Driven Assistive Learning and Adaptive Accessibility Platform with Multi-Deficit Profiling for Neurodivergent Learners.
+            A MACHINE LEARNING-ADAPTIVE READING PLATFORM FOR INDIVIDUALS WITH LEARNING AND VISUAL DISABILITIES.
           </p>
         </div>
         <div class="footer-links">
@@ -573,7 +766,8 @@
             <div style="display: flex; flex-direction: column; gap: 0.4rem;">
               <a href="#about">Overview</a>
               <a href="#team">Team &amp; Adviser</a>
-              <a href="#problem">Problem &amp; Objectives</a>
+              <a href="#problem">Problem Statement</a>
+              <a href="#objectives">Objectives</a>
               <a href="#methodology">Methodology</a>
               <a href="#features">Features</a>
               <a href="#links">Links</a>

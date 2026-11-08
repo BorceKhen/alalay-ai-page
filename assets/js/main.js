@@ -137,5 +137,104 @@ document.addEventListener('DOMContentLoaded', () => {
       closeLightbox();
     }
   });
+
+  // ── Interactive Hero Assistive Terminal (Concept A) ──────────────────────
+  const terminal = document.getElementById('assistiveTerminal');
+  if (terminal) {
+    const buttons = terminal.querySelectorAll('.terminal-btn');
+    const reader = document.getElementById('terminalReader');
+    const heading = document.getElementById('terminalHeading');
+    const text = document.getElementById('terminalText');
+    const meta = document.getElementById('terminalMeta');
+    const friction = document.getElementById('telemetryFriction');
+    const policy = document.getElementById('telemetryPolicy');
+
+    const terminalModes = {
+      default: {
+        heading: 'Cellular Respiration and Photosynthesis',
+        text: 'Photosynthesis is a photochemical process in chloroplastic thylakoid membranes wherein absorbed photon irradiance facilitates carbon assimilation and water photolysis to synthesize energetic glucose metabolites.',
+        meta: 'Estimated reading: 45s',
+        friction: 'Optimal (CLI: 7%)',
+        policy: 'Sequential DQN',
+        className: ''
+      },
+      dyslexia: {
+        heading: 'Cellular Respiration and Photosynthesis',
+        text: 'Photosynthesis is a photochemical process in chloroplastic thylakoid membranes wherein absorbed photon irradiance facilitates carbon assimilation and water photolysis to synthesize energetic glucose metabolites.',
+        meta: 'OpenDyslexic + Guided Ruler',
+        friction: 'Friction Relieved (-38%)',
+        policy: 'Visual/RAN Deficit',
+        className: 'mode-dyslexia'
+      },
+      contrast: {
+        heading: 'Cellular Respiration and Photosynthesis',
+        text: 'Photosynthesis is a photochemical process in chloroplastic thylakoid membranes wherein absorbed photon irradiance facilitates carbon assimilation and water photolysis to synthesize energetic glucose metabolites.',
+        meta: 'High Contrast (7.1:1 AAA)',
+        friction: 'Deuteranopia Filter',
+        policy: 'Low Vision Mode',
+        className: 'mode-contrast'
+      },
+      simplified: {
+        heading: 'How Plants Make Food (Simplified)',
+        text: 'Photosynthesis is how green plants turn sunlight and water into energy and food. Inside their leaves, plants use light to make glucose for fuel.',
+        meta: 'Groq AI Simplification (Grade 6)',
+        friction: 'Cognitive Load (-54%)',
+        policy: 'DQN Language Adapt',
+        className: 'mode-simplified'
+      },
+      tts: {
+        heading: 'Audio Narration in Progress...',
+        text: '“Photosynthesis is a photochemical process in chloroplastic thylakoid membranes wherein absorbed photon irradiance facilitates carbon assimilation...”',
+        meta: 'Azure Neural TTS (165 WPM)',
+        friction: 'Auditory Stream',
+        policy: 'Total Blindness / Nonvisual',
+        className: 'mode-tts'
+      }
+    };
+
+    let currentModeIndex = 0;
+    const modeKeys = ['default', 'dyslexia', 'contrast', 'simplified', 'tts'];
+    let autoCycleTimer = null;
+    let userInteracted = false;
+
+    const setTerminalMode = (modeKey) => {
+      const config = terminalModes[modeKey];
+      if (!config) return;
+
+      buttons.forEach(btn => {
+        const isActive = btn.dataset.mode === modeKey;
+        btn.classList.toggle('active', isActive);
+        btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
+
+      // Smooth content morph
+      reader.className = 'terminal-reader ' + (config.className || '');
+      heading.textContent = config.heading;
+      text.textContent = config.text;
+      if (meta) meta.textContent = config.meta;
+      if (friction) friction.textContent = config.friction;
+      if (policy) policy.textContent = config.policy;
+    };
+
+    buttons.forEach((btn, index) => {
+      btn.addEventListener('click', () => {
+        userInteracted = true;
+        clearInterval(autoCycleTimer);
+        currentModeIndex = index;
+        setTerminalMode(btn.dataset.mode);
+      });
+    });
+
+    // Gentle Auto-Cycle Preview every 5.5s until interaction
+    autoCycleTimer = setInterval(() => {
+      if (userInteracted) return;
+      currentModeIndex = (currentModeIndex + 1) % modeKeys.length;
+      setTerminalMode(modeKeys[currentModeIndex]);
+    }, 5500);
+
+    terminal.addEventListener('mouseenter', () => {
+      clearInterval(autoCycleTimer);
+    });
+  }
 });
 
