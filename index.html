@@ -21,6 +21,16 @@
 
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Immediate Theme Initializer (prevents FOUC) -->
+  <script>
+    (function() {
+      var saved = localStorage.getItem('alalay_theme');
+      var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var theme = saved || (prefersDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
 </head>
 <body id="top">
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -35,10 +45,6 @@
         <span>ALALAY<span style="color: var(--primary);">-AI</span></span>
       </a>
 
-      <button class="nav-toggle" aria-label="Toggle Navigation" aria-expanded="false">
-        ☰
-      </button>
-
       <nav class="nav" aria-label="Main Navigation">
         <a href="#team">Team</a>
         <a href="#problem">Problem</a>
@@ -47,6 +53,15 @@
         <a href="#features">Features</a>
         <a href="#links">Links</a>
       </nav>
+
+      <div class="header-actions">
+        <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button class="nav-toggle" aria-label="Toggle Navigation" aria-expanded="false">
+          ☰
+        </button>
+      </div>
     </div>
   </header>
 
@@ -78,8 +93,8 @@
          ========================================================= -->
     <section class="section tint" id="team">
       <div class="wrap">
-        <div class="section-head text-start" style="text-align: left; margin-bottom: 2.5rem;">
-          <h2 style="font-size: 2.25rem; font-weight: 800; color: var(--navy); margin-bottom: 0;">Research Team &amp; Adviser</h2>
+        <div class="section-head-left">
+          <h2>Research Team &amp; Adviser</h2>
         </div>
 
         <div class="team-grid">
@@ -102,124 +117,77 @@
           </div>
         </div>
 
-        <p class="academic-fine" style="margin-top: 2.5rem; font-size: 0.95rem; line-height: 1.65; color: var(--text-muted); max-width: 950px;">
+        <p class="academic-fine">
           College of Computer Studies, Laguna State Polytechnic University, Santa Cruz Main Campus, Santa Cruz, Laguna. Submitted November 2026 in partial fulfillment of the Bachelor of Science in Computer Science, major in Intelligent Systems.
         </p>
       </div>
     </section>
 
     <!-- =========================================================
-         3. PROBLEM STATEMENT AND OBJECTIVES
+         3. PROBLEM STATEMENT (SafeScape Reference Format)
          ========================================================= -->
     <section class="section" id="problem">
-      <div class="wrap">
-        <div class="section-head">
-          <p class="section-eyebrow">Academic Rationale</p>
-          <h2>Problem Statement &amp; Objectives</h2>
-          <p class="section-sub">
-            Addressing critical barriers in digital learning accessibility, instructional customization, and neurodivergent reading comprehension.
-          </p>
+      <div class="wrap narrow-grid">
+        <div>
+          <h2>Problem statement</h2>
         </div>
-
-        <div class="two-col-grid">
-          <!-- Problem Statement Box -->
-          <div class="content-block">
-            <h3 class="block-title">
-              <span>Problem Statement</span>
-            </h3>
-            
-            <span class="ph-tag">[ PROBLEM STATEMENT NARRATIVE PLACEHOLDER ]</span>
-            <div class="prose">
-              <p>
-                [Insert Problem Statement Paragraph: Describe the background and identified gaps in current digital educational systems regarding accessibility for neurodivergent learners, students with dyslexia, and individuals experiencing cognitive/visual reading friction.]
-              </p>
-              <p>
-                [Insert Context on Limitations: Lack of real-time assistive personalization, inflexible static document formats, and the absence of targeted deficit-specific accommodations.]
-              </p>
-            </div>
-
-            <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--navy); margin: 1.5rem 0 0.75rem;">
-              Research Questions / Specific Inquiries:
-            </h4>
-            <ul class="questions-list">
-              <li class="list-item">
-                <span class="item-num">1</span>
-                <div>
-                  <strong>Question 1:</strong> [Insert Specific Research Question 1 Placeholder]
-                </div>
-              </li>
-              <li class="list-item">
-                <span class="item-num">2</span>
-                <div>
-                  <strong>Question 2:</strong> [Insert Specific Research Question 2 Placeholder]
-                </div>
-              </li>
-              <li class="list-item">
-                <span class="item-num">3</span>
-                <div>
-                  <strong>Question 3:</strong> [Insert Specific Research Question 3 Placeholder]
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Objectives Box -->
-          <div class="content-block" id="objectives">
-            <h3 class="block-title">
-              <span>Research Objectives</span>
-            </h3>
-
-            <div style="margin-bottom: 1.5rem;">
-              <span class="ph-tag">[ GENERAL OBJECTIVE PLACEHOLDER ]</span>
-              <p style="font-size: 0.95rem; line-height: 1.6; color: var(--text-main); margin-top: 0.25rem;">
-                <strong>General Objective:</strong> [Insert General Objective: To design, develop, and evaluate ALALAY-AI, an intelligent assistive learning system that dynamically adapts educational materials to individual cognitive and visual accessibility profiles.]
-              </p>
-            </div>
-
-            <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--navy); margin-bottom: 0.75rem;">
-              Specific Objectives:
-            </h4>
-            <ul class="objectives-list">
-              <li class="list-item">
-                <span class="item-num">1</span>
-                <div>
-                  <strong>Architecture &amp; OCR:</strong> [Insert Specific Objective 1: Implement document parsing and smart flashcard generation pipeline.]
-                </div>
-              </li>
-              <li class="list-item">
-                <span class="item-num">2</span>
-                <div>
-                  <strong>Adaptive AI Engine:</strong> [Insert Specific Objective 2: Formulate dynamic friction detection and dyslexia deficit subtype recommendations.]
-                </div>
-              </li>
-              <li class="list-item">
-                <span class="item-num">3</span>
-                <div>
-                  <strong>Assistive Interface:</strong> [Insert Specific Objective 3: Integrate TTS audio synthesis, line ruler, font spacing, and hotkey navigation.]
-                </div>
-              </li>
-              <li class="list-item">
-                <span class="item-num">4</span>
-                <div>
-                  <strong>Quality &amp; Usability Evaluation:</strong> [Insert Specific Objective 4: Evaluate the system using ISO/IEC 25010 standards and stakeholder testing.]
-                </div>
-              </li>
-            </ul>
-          </div>
+        <div class="prose">
+          <p>
+            Inclusive education promotes equal learning opportunities for all individuals, regardless of ability, background, or disability. Despite this goal, educational systems still struggle to deliver learning experiences that effectively accommodate diverse learner needs, particularly those of individuals with learning and visual disabilities. In the Philippines, inclusive education is supported by legislative measures such as Republic Act No. 7277 and Republic Act No. 11650, which advocate equal access to quality education for persons with disabilities. However, implementation remains inconsistent, as many educational institutions still rely on modifying existing instructional materials rather than redesigning curricula and learning environments to be inherently accessible (Jazmines et al., 2025). Consequently, learners with disabilities, particularly those with dyslexia, complete blindness, color blindness, and low vision, often experience limited access to appropriate learning resources and accessible educational technologies (Ocampo et al., 2023; Albuquerque et al., 2025). Existing digital learning platforms further compound these challenges by offering limited accessibility features and standardized learning experiences that do not adequately address individual learning needs, resulting in reduced learner engagement, lower comprehension, and suboptimal learning outcomes (Iliska &amp; Gudoniene, 2025; Bharathi et al., 2026). Furthermore, disability-specific systems are still designed around one impairment at a time, which may limit their ability to accommodate individuals with multiple or overlapping accessibility needs (Theil et al., 2023).
+          </p>
+          <p>
+            In response, this study proposes a cross-platform, machine learning-driven adaptive learning system to support inclusive education for individuals with reading and visual disabilities. The proposed platform allows users to import educational resources, including .docx, .pdf, and .pptx files. It automatically generates personalized learning materials, such as flashcards and quizzes, tailored to users' accessibility requirements and learning profiles. By analyzing Human–Computer Interaction (HCI) telemetry, the system continuously identifies user interaction patterns. It then applies adaptive recommendation techniques to personalize interface configurations, accessibility features, and learning content based on users' preferences and learning behaviors. By integrating machine learning techniques, accessibility standards, and adaptive interface design principles, the proposed platform aims to improve accessibility, learner engagement, and educational outcomes while promoting a more inclusive digital learning environment.
+          </p>
+          <p>
+            To address the general problem, this study aims to address the following research questions:
+          </p>
+          <ol class="questions">
+            <li>How can a cross-platform, machine learning-driven adaptive learning system, integrated with accessibility tools, be designed and developed to provide accessible, user-centered, and multimodal interaction features for individuals with dyslexia, complete blindness, low vision, and color blindness?</li>
+            <li>How can machine learning, natural language processing, and deep learning models be implemented and fine-tuned to support adaptive reading functionalities, including text simplification, text extraction, learning content generation, readability classification, comprehension prediction, text-to-speech, interface personalization, and personalized recommendations?</li>
+            <li>How accurately can supervised and reinforcement machine learning algorithms predict optimal interface configurations and content difficulty based on real-time user interaction data?</li>
+            <li>How effectively do the implemented machine learning, natural language processing, and personalization models perform based on established evaluation metrics?</li>
+            <li>To what extent does the integrated ALALAY-AI adaptive reading platform improve reading comprehension, accessibility, and user engagement compared with conventional non-adaptive digital reading platforms?</li>
+          </ol>
         </div>
       </div>
     </section>
 
     <!-- =========================================================
-         4. METHODOLOGY
+         4. OBJECTIVES (SafeScape Reference Format)
          ========================================================= -->
-    <section class="section tint" id="methodology">
+    <section class="section tint" id="objectives">
+      <div class="wrap narrow-grid">
+        <div>
+          <h2>Objectives</h2>
+        </div>
+        <div class="prose">
+          <p>
+            <strong>General objective.</strong> To design, develop, and evaluate a cross-platform, intelligent machine learning-driven adaptive reading platform that enhances accessibility and reading comprehension for individuals with dyslexia, complete blindness, low vision, and color blindness through personalized content transformation, integration of accessibility tools, content simplification, and dynamic interface adaptation.
+          </p>
+          <p>
+            <strong>Specific objectives.</strong> Specifically, this study aims to address the following objectives:
+          </p>
+          <ol class="questions">
+            <li><strong>Adaptive Cross-Platform Environment:</strong> Design and develop an accessible, user-centered web learning platform supporting multimodal interaction for learners with dyslexia, complete blindness, low vision, and color blindness.</li>
+            <li><strong>Document Processing &amp; Text Simplification:</strong> Implement and fine-tune machine learning, natural language processing, and deep learning models for document text extraction (UHTEM: PaddleOCR + LayoutLMv3) and tiered text simplification (Groq/GPT-OSS-20B, Gemini Flash, Local T5).</li>
+            <li><strong>Multimodal Assistive Tools:</strong> Integrate customizable typography, Daltonization color vision deficiency filters, Azure Neural TTS, reading rulers, and screen reader compatibility.</li>
+            <li><strong>Reinforcement Learning Personalization:</strong> Formulate, train, and deploy a Deep Q-Network (DQN) engine to sequentially adapt interface configurations and content difficulty based on real-time user interaction telemetry.</li>
+            <li><strong>Empirical Performance Evaluation:</strong> Benchmark model performance using established metrics including Character/Word Error Rates (CER/WER), SARI, BLEU, and cumulative reinforcement learning rewards.</li>
+            <li><strong>User Validation &amp; Technical Compliance:</strong> Evaluate reading comprehension improvement across 50 participants, conduct User Acceptance Testing (UAT), and validate ISO/IEC 25010 technical quality and W3C accessibility compliance with 10 IT experts.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         5. METHODOLOGY
+         ========================================================= -->
+    <section class="section" id="methodology">
       <div class="wrap">
-        <div class="section-head">
-          <p class="section-eyebrow">Research Framework</p>
+        <div class="section-head-left">
           <h2>Methodology</h2>
           <p class="section-sub">
-            [Insert Methodology Framework Placeholder: Guided by Developmental Research Design / Design Science Research Methodology (DSRM) spanning requirements, design, iterative prototyping, AI integration, and validation.]
+            Guided by a Quantitative Developmental Research Design (R&amp;D) and Design Science Research Methodology (DSRM) across six iterative engineering phases and a six-layer closed-loop architecture.
           </p>
         </div>
 
@@ -227,85 +195,85 @@
         <div class="methodology-phases">
           <div class="phase-card">
             <div class="phase-number">01</div>
-            <span class="ph-tag">[ PHASE 1 ]</span>
             <h3>Requirements Analysis</h3>
-            <p>[Insert Phase 1 Description: Identifying learner friction metrics, accessibility guidelines (WCAG), and OCR ingestion criteria.]</p>
+            <p>Analyzed accessibility requirements (WCAG 2.1 AA), multi-deficit profiling guidelines, and document parsing benchmarks for neurodivergent and visually impaired learners.</p>
           </div>
 
           <div class="phase-card">
             <div class="phase-number">02</div>
-            <span class="ph-tag">[ PHASE 2 ]</span>
             <h3>Architecture &amp; System Design</h3>
-            <p>[Insert Phase 2 Description: Designing cloud backend, Firestore schemas, responsive UI layouts, and interaction workflows.]</p>
+            <p>Architected the six-layer closed-loop system design, Firestore relational data schemas, and responsive accessibility layouts across desktop and mobile devices.</p>
           </div>
 
           <div class="phase-card">
             <div class="phase-number">03</div>
-            <span class="ph-tag">[ PHASE 3 ]</span>
             <h3>Full-Stack Prototyping</h3>
-            <p>[Insert Phase 3 Description: Engineering the Flask web platform, session manager, and client-side assistive tool suite.]</p>
+            <p>Engineered the Flask web application, client-side telemetry trackers, interactive flashcard workspaces, and configurable assistive control widgets.</p>
           </div>
 
           <div class="phase-card">
             <div class="phase-number">04</div>
-            <span class="ph-tag">[ PHASE 4 ]</span>
-            <h3>AI &amp; Recommendation Engine</h3>
-            <p>[Insert Phase 4 Description: Integrating OCR pipelines, reading friction models, and clinical dyslexia deficit taxonomy.]</p>
+            <h3>AI &amp; Reinforcement Learning</h3>
+            <p>Integrated the UHTEM OCR pipeline, fine-tuned tiered LLM content simplifiers, and trained the Deep Q-Network (DQN) agent on HCI interaction telemetry for adaptive recommendation.</p>
           </div>
 
           <div class="phase-card">
             <div class="phase-number">05</div>
-            <span class="ph-tag">[ PHASE 5 ]</span>
             <h3>Testing &amp; Verification</h3>
-            <p>[Insert Phase 5 Description: Conducting diagnostic test cases, route stress tests, and accessibility compliance audits.]</p>
+            <p>Executed diagnostic test cases, route verification, W3C accessibility validation (0 errors/warnings), and multi-screen reader compatibility audits (NVDA, JAWS, VoiceOver, TalkBack).</p>
           </div>
 
           <div class="phase-card">
             <div class="phase-number">06</div>
-            <span class="ph-tag">[ PHASE 6 ]</span>
             <h3>Stakeholder Evaluation</h3>
-            <p>[Insert Phase 6 Description: Tri-partite quantitative and qualitative evaluation with IT experts, specialists, and learners.]</p>
+            <p>Conducted controlled experimental pre/post assessment with 50 participants, UAT with 25 participants, and software quality benchmarking with 10 IT professionals under ISO/IEC 25010.</p>
           </div>
         </div>
 
-        <!-- System Architecture Placeholder Box -->
+        <!-- System Architecture Box -->
         <div class="architecture-box">
           <div class="mockup-bar">
             <span class="mockup-dot red"></span>
             <span class="mockup-dot yellow"></span>
             <span class="mockup-dot green"></span>
-            <span class="mockup-title">system-architecture-pipeline.svg</span>
+            <span class="mockup-title">alalay-ai-system-architecture.svg</span>
           </div>
           <div class="mockup-preview-wrap" data-lightbox>
-            <img src="assets/img/screenshots/architecture.svg" alt="ALALAY-AI System Architecture Diagram Placeholder">
+            <img src="assets/img/screenshots/architecture.svg" alt="ALALAY-AI Six-Layer System Architecture Diagram">
             <div class="zoom-overlay">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
               Click to preview
             </div>
           </div>
           <div class="architecture-caption">
-            <strong>Figure 1.0:</strong> [Insert Architecture Diagram Caption: ALALAY-AI Integrated Conceptual Architecture and Assistive Adaptation Pipeline]
+            <strong>Figure 1.0:</strong> ALALAY-AI Closed-Loop System Architecture: Presentation Front End, Backend ML Inference Pipelines, and Firestore Data Synchronization.
           </div>
         </div>
 
         <!-- Evaluation Breakdown -->
         <div class="eval-grid">
           <div class="eval-card">
-            <span class="eval-tag">Technical Evaluation</span>
-            <h4>[Insert IT Experts Count] IT Experts</h4>
-            <p>[Insert evaluation focus: Evaluating software quality characteristics based on ISO/IEC 25010 standards.]</p>
+            <span class="eval-tag">ISO/IEC 25010 Benchmark</span>
+            <h4>10 IT Experts (97.93%)</h4>
+            <p>Evaluated software product quality across Functional Suitability, Performance Efficiency, Reliability, Usability, Security, Maintainability, and Portability.</p>
           </div>
 
           <div class="eval-card">
-            <span class="eval-tag">Domain Validation</span>
-            <h4>[Insert Specialists Count] Educators / Specialists</h4>
-            <p>[Insert evaluation focus: Validating accessibility adaptations, pedagogical suitability, and dyslexia accommodation accuracy.]</p>
+            <span class="eval-tag">Controlled Learning Gains</span>
+            <h4>50 Participants</h4>
+            <p>Demonstrated significant pre- to post-assessment score improvements in both control and experimental cohorts (6.76 vs 7.04 mean score gain).</p>
           </div>
 
           <div class="eval-card">
-            <span class="eval-tag">Usability Testing</span>
-            <h4>[Insert End-Users Count] End-Users</h4>
-            <p>[Insert evaluation focus: Assessing usability, ease of learning, user satisfaction, and friction reduction.]</p>
+            <span class="eval-tag">User Acceptance Testing</span>
+            <h4>25 Participants (4.58 / 5.0)</h4>
+            <p>Achieved an overall mean score of 4.58 (<em>Strongly Agree</em>), with highest ratings in ease of interaction, accessibility controls, and adaptive support.</p>
+          </div>
+
+          <div class="eval-card">
+            <span class="eval-tag">Model Benchmarks</span>
+            <h4>DQN + UHTEM State-of-the-Art</h4>
+            <p>DQN achieved a cumulative reward of 4,860.00 with 75.67% optimal policy match; UHTEM achieved 98.43% character recognition accuracy.</p>
           </div>
         </div>
       </div>
@@ -316,38 +284,36 @@
          ========================================================= -->
     <section class="section" id="features">
       <div class="wrap">
-        <div class="section-head">
-          <p class="section-eyebrow">Platform Capabilities</p>
+        <div class="section-head-left">
           <h2>System Features &amp; Screenshots</h2>
           <p class="section-sub">
-            Interactive, accessible interfaces designed to empower learners through intelligent personalization.
+            Interactive, accessible interfaces engineered to bridge accessibility barriers through state-of-the-art machine learning and personalized assistive controls.
           </p>
         </div>
 
         <div class="features-container">
-          <!-- Feature 1: Dashboard & Decks -->
+          <!-- Feature 1: Dashboard & Workspace -->
           <article class="feature-row">
             <div class="feature-info">
               <div class="feature-tag">
                 <span class="badge-pill badge-blue">Feature 01</span>
               </div>
-              <span class="ph-tag">[ FEATURE 1 PLACEHOLDER ]</span>
-              <h3>[Insert Feature 1 Name: Accessible Dashboard &amp; Flashcard Workspace]</h3>
+              <h3>Accessible Study Workspace &amp; Multi-Format Decks</h3>
               <p>
-                [Insert Feature 1 Description: High-contrast, keyboard-navigable dashboard organizing personalized study sets, live recency-sorted deck libraries, and quick-import tools.]
+                A high-contrast, keyboard-navigable learning workspace that organizes user study sets, recent decks, and interactive study modes. Fully responsive and compliant with WCAG 2.1 AA accessibility guidelines.
               </p>
               <ul class="feature-bullets">
                 <li>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>[Insert Key Point A: Clean Gizmo-inspired sidebar with recency indicators]</span>
+                  <span><strong>Three Structured Modes:</strong> Descriptive flashcards, multiple-choice quizzes, and Q&amp;A review sessions</span>
                 </li>
                 <li>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>[Insert Key Point B: Multi-format study modes: descriptive, quiz, and questions]</span>
+                  <span><strong>Live Recency Tracking:</strong> Quick-access sidebar with dynamic color indicators and card counters</span>
                 </li>
                 <li>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>[Insert Key Point C: Dynamic deck categorization and card-count tracking]</span>
+                  <span><strong>Accessible Layout:</strong> High-contrast glassmorphic design with zero visual clutter and intuitive navigation</span>
                 </li>
               </ul>
             </div>
@@ -359,14 +325,14 @@
                 <span class="mockup-title">alalay-ai/dashboard-decks.png</span>
               </div>
               <div class="mockup-preview-wrap">
-                <img src="assets/img/screenshots/feature-1.svg" alt="Feature 1: User Dashboard and Study Sets Placeholder">
+                <img src="assets/img/screenshots/feature-1.svg" alt="Accessible Study Workspace and Flashcard Decks">
                 <div class="zoom-overlay">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
                   Enlarge
                 </div>
               </div>
               <div class="media-caption">
-                <span>Figure 2.1: [Insert Caption for Feature 1 Screenshot]</span>
+                <span>Figure 2.1: ALALAY-AI Accessible Workspace and Flashcard Study Sets</span>
                 <span style="font-size: 0.72rem; color: var(--primary);">Click to zoom</span>
               </div>
             </div>
@@ -378,23 +344,22 @@
               <div class="feature-tag">
                 <span class="badge-pill badge-cyan">Feature 02</span>
               </div>
-              <span class="ph-tag">[ FEATURE 2 PLACEHOLDER ]</span>
-              <h3>[Insert Feature 2 Name: Smart Document &amp; OCR Flashcard Generator]</h3>
+              <h3>UHTEM Intelligent Document Ingestion &amp; OCR Pipeline</h3>
               <p>
-                [Insert Feature 2 Description: Automated content ingestion allowing users to upload PDF, DOCX, PPTX, or handwritten lecture notes, converting dense text into bite-sized adaptive cards.]
+                Converts static, inaccessible academic documents into structured learning cards using the Unified Hybrid Text Extraction Model (UHTEM), combining PaddleOCR (PP-OCRv4) and Microsoft LayoutLMv3.
               </p>
               <ul class="feature-bullets">
                 <li>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>[Insert Key Point A: High-accuracy OCR parsing for printed and digital materials]</span>
+                  <span><strong>High-Accuracy Extraction:</strong> Achieved 98.43% character recognition accuracy and 90.09% word accuracy (9.91% WER)</span>
                 </li>
                 <li>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>[Insert Key Point B: AI-powered summary and structured key-concept extraction]</span>
+                  <span><strong>Multi-Format Ingestion:</strong> Seamlessly parses complex PDF, DOCX, PPTX, and lecture slide formats</span>
                 </li>
                 <li>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>[Insert Key Point C: Instant conversion into review decks with custom difficulty tiers]</span>
+                  <span><strong>Automated Card Generation:</strong> Extracts key definitions and terms into bite-sized adaptive flashcards</span>
                 </li>
               </ul>
             </div>
@@ -406,14 +371,14 @@
                 <span class="mockup-title">alalay-ai/document-import-ocr.png</span>
               </div>
               <div class="mockup-preview-wrap">
-                <img src="assets/img/screenshots/feature-2.svg" alt="Feature 2: Document Processing and OCR Pipeline Placeholder">
+                <img src="assets/img/screenshots/feature-2.svg" alt="UHTEM Document Processing and OCR Pipeline">
                 <div class="zoom-overlay">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
                   Enlarge
                 </div>
               </div>
               <div class="media-caption">
-                <span>Figure 2.2: [Insert Caption for Feature 2 Screenshot]</span>
+                <span>Figure 2.2: UHTEM Document Parsing and Automatic Card Extraction</span>
                 <span style="font-size: 0.72rem; color: var(--primary);">Click to zoom</span>
               </div>
             </div>
@@ -425,23 +390,22 @@
               <div class="feature-tag">
                 <span class="badge-pill badge-blue">Feature 03</span>
               </div>
-              <span class="ph-tag">[ FEATURE 3 PLACEHOLDER ]</span>
-              <h3>[Insert Feature 3 Name: AI Recommendation &amp; Dyslexia Subtype Profiling]</h3>
+              <h3>DQN Reinforcement Learning &amp; Dyslexia Subtype Profiling</h3>
               <p>
-                [Insert Feature 3 Description: Real-time telemetry monitoring reading friction and proposing clinical deficit-aligned adaptations (Visual, Phonological, and Rate/Fluency Deficits).]
+                Employs a Deep Q-Network (DQN) agent that continuously analyzes Human–Computer Interaction (HCI) telemetry to detect reading friction and recommend clinical deficit-aligned adaptations.
               </p>
               <ul class="feature-bullets">
                 <li>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>[Insert Key Point A: Non-intrusive floating recommendation snackbar with single-click accept]</span>
+                  <span><strong>Reinforcement Learning Agent:</strong> Sequential adaptation achieving 4,860.00 cumulative reward and 75.67% optimal policy match</span>
                 </li>
                 <li>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>[Insert Key Point B: Deficit-specific badges (Type: Visual, Phonological, or Rate/Fluency Deficit)]</span>
+                  <span><strong>Clinical Deficit Taxonomy:</strong> Identifies Visual/Orthographic, Phonological/Decoding, and Rate/Fluency (RAN) friction</span>
                 </li>
                 <li>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>[Insert Key Point C: Preserves learner autonomy with decline and session dismissal options]</span>
+                  <span><strong>User Agency Controller:</strong> Non-intrusive floating recommendation snackbar with one-click accept or session dismissal</span>
                 </li>
               </ul>
             </div>
@@ -453,42 +417,41 @@
                 <span class="mockup-title">alalay-ai/ai-recommendation-modal.png</span>
               </div>
               <div class="mockup-preview-wrap">
-                <img src="assets/img/screenshots/feature-3.svg" alt="Feature 3: AI Recommendation and Dyslexia Subtype Badges Placeholder">
+                <img src="assets/img/screenshots/feature-3.svg" alt="DQN Recommendation Engine and Dyslexia Subtype Badges">
                 <div class="zoom-overlay">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
                   Enlarge
                 </div>
               </div>
               <div class="media-caption">
-                <span>Figure 2.3: [Insert Caption for Feature 3 Screenshot]</span>
+                <span>Figure 2.3: DQN Adaptive Recommendation Snackbar with Dyslexia Deficit Badges</span>
                 <span style="font-size: 0.72rem; color: var(--primary);">Click to zoom</span>
               </div>
             </div>
           </article>
 
-          <!-- Feature 4: Accessibility Suite -->
+          <!-- Feature 4: Accessibility Suite & Tiered Simplification -->
           <article class="feature-row reverse">
             <div class="feature-info">
               <div class="feature-tag">
                 <span class="badge-pill badge-cyan">Feature 04</span>
               </div>
-              <span class="ph-tag">[ FEATURE 4 PLACEHOLDER ]</span>
-              <h3>[Insert Feature 4 Name: Comprehensive Assistive Reading Suite]</h3>
+              <h3>Tiered Generative AI &amp; Comprehensive Assistive Suite</h3>
               <p>
-                [Insert Feature 4 Description: Tailored assistive controls built directly into every study interface, empowering learners with full control over their visual and sensory environment.]
+                Integrates multi-model text simplification and a rich suite of client-side assistive controls designed for complete blindness, low vision, dyslexia, and color vision deficiency.
               </p>
               <ul class="feature-bullets">
                 <li>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>[Insert Key Point A: Neural Text-to-Speech (TTS) with variable speech rate customization]</span>
+                  <span><strong>Tiered Generative Cascade:</strong> Groq/GPT-OSS-20B (SARI: 61.75, latency: 0.45s), Gemini 3.6 Flash, and fine-tuned local T5</span>
                 </li>
                 <li>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>[Insert Key Point B: OpenDyslexic font toggle, wide letter spacing, and line height options]</span>
+                  <span><strong>Neural Text-to-Speech:</strong> Microsoft Azure Neural TTS and ElevenLabs Multilingual v2 with variable speech rate customization</span>
                 </li>
                 <li>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>[Insert Key Point C: Guided Reading Ruler (Line Focus) and configurable keyboard hotkeys]</span>
+                  <span><strong>Assistive Controls:</strong> OpenDyslexic typography, Daltonization matrix color filters, guided reading line ruler, and hotkeys</span>
                 </li>
               </ul>
             </div>
@@ -500,14 +463,14 @@
                 <span class="mockup-title">alalay-ai/accessibility-controls.png</span>
               </div>
               <div class="mockup-preview-wrap">
-                <img src="assets/img/screenshots/feature-4.svg" alt="Feature 4: Accessibility Suite and Assistive Controls Placeholder">
+                <img src="assets/img/screenshots/feature-4.svg" alt="Accessibility Suite and Assistive Reading Controls">
                 <div class="zoom-overlay">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
                   Enlarge
                 </div>
               </div>
               <div class="media-caption">
-                <span>Figure 2.4: [Insert Caption for Feature 4 Screenshot]</span>
+                <span>Figure 2.4: Multimodal Assistive Reading Controls and Daltonization CVD Filters</span>
                 <span style="font-size: 0.72rem; color: var(--primary);">Click to zoom</span>
               </div>
             </div>
@@ -521,8 +484,7 @@
          ========================================================= -->
     <section class="section tint" id="links">
       <div class="wrap">
-        <div class="section-head">
-          <p class="section-eyebrow">Project Access</p>
+        <div class="section-head-left">
           <h2>Links &amp; Resources</h2>
           <p class="section-sub">
             Explore the ALALAY-AI codebase, live application, demonstration media, and research documentation.
@@ -535,9 +497,9 @@
             <div class="link-icon-box">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
             </div>
-            <span class="ph-tag">[ SOURCE CODE ]</span>
+            <span class="badge-pill badge-blue" style="align-self: flex-start; margin-bottom: 0.75rem;">Source Code</span>
             <h3>GitHub Repository</h3>
-            <p>[Insert Repository Link: Access source code, commit history, setup instructions, and issue tracker on GitHub.]</p>
+            <p>Access the complete source code, model training pipelines, commit history, setup instructions, and issue tracker on GitHub.</p>
             <div class="link-action">
               <span>View on GitHub</span>
               <span>&rarr;</span>
@@ -549,9 +511,9 @@
             <div class="link-icon-box">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
             </div>
-            <span class="ph-tag">[ LIVE SYSTEM ]</span>
+            <span class="badge-pill badge-cyan" style="align-self: flex-start; margin-bottom: 0.75rem;">Live System</span>
             <h3>Web Application</h3>
-            <p>Access the live deployed ALALAY-AI platform, experience accessible authentication, and test adaptive study sets.</p>
+            <p>Access the live deployed ALALAY-AI platform, experience accessible authentication, and test adaptive study sets in real time.</p>
             <div class="link-action">
               <span>Launch Application</span>
               <span>&rarr;</span>
@@ -563,9 +525,9 @@
             <div class="link-icon-box">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
             </div>
-            <span class="ph-tag">[ DEMO VIDEO ]</span>
+            <span class="badge-pill badge-blue" style="align-self: flex-start; margin-bottom: 0.75rem;">Demo Video</span>
             <h3>Video Walkthrough</h3>
-            <p>[Insert Demo Video Link: Watch the recorded system demonstration, OCR conversion, and AI recommendation walkthrough.]</p>
+            <p>Watch the recorded system demonstration, UHTEM OCR document ingestion, and DQN adaptive recommendation walkthrough on Google Drive.</p>
             <div class="link-action">
               <span>Watch on Google Drive / YouTube</span>
               <span>&rarr;</span>
@@ -577,9 +539,9 @@
             <div class="link-icon-box">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
             </div>
-            <span class="ph-tag">[ RESEARCH DOCUMENT ]</span>
+            <span class="badge-pill badge-cyan" style="align-self: flex-start; margin-bottom: 0.75rem;">Research Document</span>
             <h3>Thesis Manuscript</h3>
-            <p>[Insert Manuscript Link: View the full undergraduate thesis manuscript, literature review, and evaluation results.]</p>
+            <p>View the complete undergraduate thesis manuscript, mathematical formulations, model benchmarking, and full empirical evaluation results.</p>
             <div class="link-action">
               <span>Read Documentation</span>
               <span>&rarr;</span>

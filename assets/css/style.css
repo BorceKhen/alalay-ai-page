@@ -22,13 +22,14 @@
   --navy: #0f172a;
   --navy-light: #1e293b;
   --text-main: #1e293b;
+  --text-sub: #334155;
   --text-muted: #64748b;
   --text-light: #94a3b8;
   
   /* Backgrounds */
-  --bg-page: #f8fafc;
+  --bg-page: #ffffff;
   --bg-white: #ffffff;
-  --bg-tint: #f1f5f9;
+  --bg-tint: #f8fafc;
   --bg-card: #ffffff;
   
   /* Borders & Shadows */
@@ -47,6 +48,35 @@
   /* Container Widths */
   --wrap-max: 1200px;
   --wrap-pad: 1.5rem;
+}
+
+/* ==========================================================================
+   DARK THEME VARIABLES
+   ========================================================================== */
+[data-theme="dark"] {
+  --bg-page: #0b1120;
+  --bg-white: #0f172a;
+  --bg-tint: #141f33;
+  --bg-card: #111c30;
+  --navy: #f8fafc;
+  --navy-light: #e2e8f0;
+  --text-main: #f1f5f9;
+  --text-sub: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-light: #64748b;
+  --border-subtle: #1e293b;
+  --border-strong: #334155;
+  --primary: #6366f1;
+  --primary-hover: #818cf8;
+  --primary-soft: rgba(99, 102, 241, 0.18);
+  --primary-border: rgba(99, 102, 241, 0.35);
+  --accent: #38bdf8;
+  --accent-soft: rgba(56, 189, 248, 0.15);
+  --accent-border: rgba(56, 189, 248, 0.3);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 16px -2px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 12px 32px -4px rgba(0, 0, 0, 0.6);
+  --shadow-hover: 0 16px 40px -4px rgba(99, 102, 241, 0.25);
 }
 
 /* Reset & Base Setup */
@@ -121,15 +151,32 @@ a:hover {
 /* ==========================================================================
    NAVIGATION BAR
    ========================================================================== */
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
-  transition: all 0.3s ease;
+[data-theme="dark"] .site-header {
+  background: rgba(15, 23, 42, 0.88);
+  border-bottom-color: rgba(30, 41, 59, 0.8);
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border-strong);
+  background: var(--bg-card);
+  color: var(--navy);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+  background: var(--bg-tint);
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: rotate(15deg);
 }
 
 .site-header.scrolled {
@@ -141,6 +188,12 @@ a:hover {
   align-items: center;
   justify-content: space-between;
   height: 72px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .brand {
@@ -318,10 +371,29 @@ a:hover {
   background-color: var(--bg-tint);
 }
 
-.section-head {
-  text-align: center;
-  max-width: 760px;
-  margin: 0 auto 3.5rem;
+.section-head,
+.section-head-left {
+  text-align: left;
+  margin-bottom: 2.75rem;
+  max-width: none;
+}
+
+.section-head h2,
+.section-head-left h2 {
+  font-size: clamp(2rem, 3.2vw, 2.6rem);
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -0.025em;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+.section-head .section-sub,
+.section-head-left .section-sub {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  max-width: 65ch;
 }
 
 .section-eyebrow {
@@ -397,7 +469,7 @@ a:hover {
   font-weight: 900;
   letter-spacing: -0.035em;
   line-height: 1;
-  color: #0f172a;
+  color: var(--navy);
   margin-bottom: 1.25rem;
 }
 
@@ -406,7 +478,7 @@ a:hover {
   font-size: clamp(1.2rem, 2vw, 1.45rem);
   font-weight: 600;
   line-height: 1.45;
-  color: #334155;
+  color: var(--text-sub);
   max-width: 68ch;
   margin-bottom: 1.25rem;
 }
@@ -432,9 +504,16 @@ a:hover {
    ========================================================================== */
 .team-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 2.5rem;
   margin-top: 1.5rem;
+}
+
+@media (max-width: 860px) {
+  .team-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
 }
 
 .person-card {
@@ -473,90 +552,98 @@ a:hover {
   line-height: 1.5;
   font-weight: 400;
 }
-  padding: 1rem 1.5rem;
-  background: rgba(255, 255, 255, 0.6);
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border-subtle);
+
+.academic-fine {
+  margin-top: 2.75rem;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+  max-width: 900px;
+  text-align: left;
 }
 
 /* ==========================================================================
-   3. PROBLEM STATEMENT & OBJECTIVES SECTION
+   3. PROBLEM STATEMENT & OBJECTIVES SECTION (SafeScape Reference Format)
    ========================================================================== */
-.two-col-grid {
+.narrow-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2.5rem;
+  grid-template-columns: minmax(240px, 1fr) minmax(0, 2.5fr);
+  gap: clamp(2rem, 4vw, 4.5rem);
+  align-items: start;
 }
 
-.content-block {
-  background: var(--bg-white);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  padding: 2.25rem;
-  box-shadow: var(--shadow-sm);
+.narrow-grid > div:first-child {
+  position: relative;
 }
 
-.block-title {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-size: 1.45rem;
-  font-weight: 700;
+.narrow-grid h2 {
+  font-family: var(--font-sans);
+  font-size: clamp(2rem, 3.2vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
   color: var(--navy);
-  margin-bottom: 1.25rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 1px solid var(--border-subtle);
+  line-height: 1.15;
 }
 
-.block-title i,
-.block-title svg {
-  color: var(--primary);
+.prose {
+  max-width: 72ch;
 }
 
 .prose p {
-  color: var(--text-main);
-  margin-bottom: 1.25rem;
-  font-size: 0.98rem;
+  color: var(--text-sub);
+  font-size: 1.05rem;
+  line-height: 1.75;
+  margin-bottom: 1.35rem;
 }
 
-.questions-list,
-.objectives-list {
-  list-style: none;
+.prose strong {
+  color: var(--navy);
+}
+
+.prose ol.questions {
+  padding-left: 1.35rem;
+  margin: 1.5rem 0;
   display: flex;
-  flex-column;
-  gap: 1rem;
+  flex-direction: column;
+  gap: 1.25rem;
 }
 
-.list-item {
-  display: flex;
-  gap: 0.85rem;
-  padding: 1rem 1.15rem;
-  background: var(--bg-page);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  font-size: 0.92rem;
-  line-height: 1.55;
-  transition: all 0.2s ease;
+.prose ol.questions li {
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: var(--text-sub);
 }
 
-.list-item:hover {
-  border-color: var(--primary-border);
-  background: #ffffff;
-}
-
-.item-num {
-  flex-shrink: 0;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: var(--primary);
-  color: #ffffff;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.75rem;
+.prose ol.questions li::marker {
   font-weight: 700;
-  margin-top: 2px;
+  color: var(--primary);
+}
+
+.prose ul.objectives-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+.prose ul.objectives-list li {
+  font-size: 1.02rem;
+  line-height: 1.65;
+  color: var(--text-sub);
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.prose ul.objectives-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--primary);
+  font-size: 1.4rem;
+  line-height: 1;
 }
 
 /* ==========================================================================
@@ -1042,6 +1129,7 @@ a:hover {
     font-size: 2.5rem;
   }
   
+  .narrow-grid,
   .two-col-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
@@ -1072,7 +1160,7 @@ a:hover {
     top: 72px;
     left: 0;
     right: 0;
-    background: #ffffff;
+    background: var(--bg-white);
     flex-direction: column;
     padding: 1.5rem;
     gap: 1rem;
