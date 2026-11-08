@@ -31,6 +31,9 @@
   --bg-white: #ffffff;
   --bg-tint: #f8fafc;
   --bg-card: #ffffff;
+  --bg-hero: linear-gradient(180deg, #f8faff 0%, #ffffff 100%);
+  --hero-blob: radial-gradient(circle, rgba(59, 73, 161, 0.12) 0%, rgba(2, 132, 199, 0.05) 50%, transparent 70%);
+  --bg-footer: #0f172a;
   
   /* Borders & Shadows */
   --border-subtle: #e2e8f0;
@@ -58,6 +61,10 @@
   --bg-white: #0f172a;
   --bg-tint: #141f33;
   --bg-card: #111c30;
+  --bg-hero: linear-gradient(180deg, #0b1120 0%, #0f172a 100%);
+  --hero-blob: radial-gradient(circle, rgba(99, 102, 241, 0.18) 0%, rgba(56, 189, 248, 0.06) 50%, transparent 70%);
+  --bg-footer: #060913;
+  
   --navy: #f8fafc;
   --navy-light: #e2e8f0;
   --text-main: #f1f5f9;
@@ -424,12 +431,13 @@ a:hover {
    1. HERO SECTION (SafeScape Reference Placement)
    ========================================================================== */
 .hero {
-  background: linear-gradient(180deg, #f8faff 0%, #ffffff 100%);
+  background: var(--bg-hero);
   color: var(--text-main);
   padding: clamp(3.5rem, 6vw, 5.5rem) 0 clamp(3.5rem, 6vw, 5rem);
   position: relative;
   overflow: hidden;
   border-bottom: 1px solid var(--border-subtle);
+  transition: background 0.3s ease;
 }
 
 .hero::before {
@@ -439,9 +447,10 @@ a:hover {
   right: -5%;
   width: 520px;
   height: 520px;
-  background: radial-gradient(circle, rgba(59, 73, 161, 0.12) 0%, rgba(2, 132, 199, 0.05) 50%, transparent 70%);
+  background: var(--hero-blob);
   pointer-events: none;
   z-index: 0;
+  transition: background 0.3s ease;
 }
 
 .hero .wrap {
@@ -903,7 +912,7 @@ a:hover {
   padding: 0.75rem 1.25rem;
   font-size: 0.8rem;
   color: var(--text-muted);
-  background: #ffffff;
+  background: var(--bg-card);
   border-top: 1px solid var(--border-subtle);
   display: flex;
   align-items: center;
@@ -985,10 +994,20 @@ a:hover {
    FOOTER
    ========================================================================== */
 .site-footer {
-  background: var(--navy);
+  background: var(--bg-footer);
   color: #ffffff;
   padding: 4rem 0 2.5rem;
-  border-top: 1px solid var(--navy-light);
+  border-top: 1px solid var(--border-subtle);
+  transition: background 0.3s ease;
+}
+
+[data-theme="dark"] .mockup-bar {
+  background: #1e293b;
+  border-bottom-color: #334155;
+}
+
+[data-theme="dark"] .mockup-preview-wrap {
+  background: #0b1120;
 }
 
 .footer-top {
